@@ -243,8 +243,12 @@
 <script>
     window.routes = {
         'dashboard' : '{{ route('dashboard') }}',
+        'inventory_index' : '{{ route('inventory.index') }}',
         'inventory_store' : '{{ route('inventory.store') }}',
         'inventory_get_items' : '{{ route('inventory.get-items') }}',
+        'category_items' : '{{ route('category.index') }}',
+        'category_store' : '{{ route('category.store') }}',
+        'category_get_items' : '{{ route('category.get-items') }}',
     }
 </script>
 <!-- Vendor js -->

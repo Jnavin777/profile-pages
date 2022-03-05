@@ -13,12 +13,16 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 // import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import SimpleTable from "./Vue/Partials/SimpleTable";
+import InventoryShow from "./Vue/components/InventoryShow";
+import CategoryIndex from "./Vue/components/CategoryIndex";
 
 Vue.prototype.console = console;
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.component('test-test', test);
 Vue.component(InventoryIndex.name, InventoryIndex);
+Vue.component(InventoryShow.name, InventoryShow);
 Vue.component(SimpleTable.name, SimpleTable);
+Vue.component(CategoryIndex.name, CategoryIndex);
 
 new Vue().$mount('#wrapper')

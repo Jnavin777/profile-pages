@@ -22,7 +22,12 @@
                         <span> Инвентаризации </span>
                     </a>
                 </li>
-
+                <li>
+                    <a href="{{ route('category.index') }}" class="waves-effect">
+                        <i class="remixicon-layout-line"></i>
+                        <span> Categories </span>
+                    </a>
+                </li>
                 <li>
                     <a href="javascript: void(0);" class="waves-effect">
                         <i class="remixicon-mail-open-line"></i>
