@@ -77,6 +77,15 @@
                         required
                     ></b-form-textarea>
                 </b-form-group>
+                <b-form-group
+                    label="Branch"
+                    label-for="branch-input">
+                    <b-form-select v-model="form.branch" :options="branchOptions">
+                        <template #first>
+                            <b-form-select-option :value="null" disabled>-- Please select an option --</b-form-select-option>
+                        </template>
+                    </b-form-select>
+                </b-form-group>
             </form>
         </b-modal>
     </div>
@@ -85,8 +94,10 @@
 <script>
 export default {
     name: "InventoryIndex",
+    props: ['branches'],
     data() {
         return {
+            branchOptions: [],
             modal: {
                 action: this.CREATE,
                 title: 'Create inventory',
@@ -99,7 +110,8 @@ export default {
             perPage: 25,
             form: {
                 name: null,
-                description: null
+                description: null,
+                branch: null
             },
             CREATE: 'CREATE',
             UPDATE: 'UPDATE',
@@ -109,6 +121,7 @@ export default {
                 {key:'name'},
                 {key:'description'},
                 {key:'user.name'},
+                {key:'branch.name'},
                 {key:'actions'},
             ]
         }
@@ -117,6 +130,7 @@ export default {
         onEdit(item) {
             this.form.name = item.name;
             this.form.description = item.description;
+            this.form.branch = item.branch ? item.branch.id : null;
             this.modal.action = this.UPDATE;
             this.modal.editItemId = item.id;
             this.modal.title = 'Update inventory #'+item.id;
@@ -132,7 +146,8 @@ export default {
         resetModal(){
             this.form = {
                 name: null,
-                description: null
+                description: null,
+                branch: null
             }
             this.modal = {
                 action: this.CREATE,
@@ -172,6 +187,12 @@ export default {
     created() {
         this.getItems();
         this.resetModal();
+        this.branchOptions = this.branches.map(item => {
+            return {
+                value: item.id,
+                text: item.name
+            }
+        });
     }
 }
 </script>

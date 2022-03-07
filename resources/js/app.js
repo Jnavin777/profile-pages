@@ -15,6 +15,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import SimpleTable from "./Vue/Partials/SimpleTable";
 import InventoryShow from "./Vue/components/InventoryShow";
 import CategoryIndex from "./Vue/components/CategoryIndex";
+import BranchIndex from "./Vue/components/BranchIndex";
 
 Vue.prototype.console = console;
 Vue.use(BootstrapVue);
@@ -24,5 +25,6 @@ Vue.component(InventoryIndex.name, InventoryIndex);
 Vue.component(InventoryShow.name, InventoryShow);
 Vue.component(SimpleTable.name, SimpleTable);
 Vue.component(CategoryIndex.name, CategoryIndex);
+Vue.component(BranchIndex.name, BranchIndex);
 
 new Vue().$mount('#wrapper')

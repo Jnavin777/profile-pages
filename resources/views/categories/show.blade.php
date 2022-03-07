@@ -12,7 +12,7 @@
         </div>
     </x-slot>
     <x-slot name="slot">
-        <inventory-show></inventory-show>
+{{--        <inventory-show></inventory-show>--}}
     </x-slot>
 
 </x-minton-layout>

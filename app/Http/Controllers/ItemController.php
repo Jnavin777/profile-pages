@@ -20,7 +20,6 @@ class ItemController extends Controller
         $newItem->article = $request->get('article');
         $newItem->inventory_id = $request->get('inventory_id');
         $newItem->category_id = $request->get('category_id');
-//        $newItem->branch_id = $request->get('branch_id');
         $newItem->date_of_receiving = $request->get('date_of_receiving');
         $newItem->save();
         return new JsonResponse($newItem, Response::HTTP_OK);

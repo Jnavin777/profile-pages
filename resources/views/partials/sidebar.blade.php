@@ -25,27 +25,30 @@
                 <li>
                     <a href="{{ route('category.index') }}" class="waves-effect">
                         <i class="remixicon-layout-line"></i>
-                        <span> Categories </span>
+                        <span> Категории </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('branch.index') }}" class="waves-effect">
+                        <i class="remixicon-layout-line"></i>
+                        <span> Отделения </span>
                     </a>
                 </li>
                 <li>
                     <a href="javascript: void(0);" class="waves-effect">
                         <i class="remixicon-mail-open-line"></i>
-                        <span> Email </span>
+                        <span> Создать </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
                         <li>
-                            <a href="email-inbox.html">Inbox</a>
+                            <a href="email-inbox.html">Новая категория</a>
                         </li>
                         <li>
-                            <a href="email-read.html">Read Email</a>
+                            <a href="email-read.html">Новая инвентаризация</a>
                         </li>
                         <li>
-                            <a href="email-compose.html">Compose Email</a>
-                        </li>
-                        <li>
-                            <a href="email-templates.html">Email Templates</a>
+                            <a href="email-compose.html">Новое отделение</a>
                         </li>
                     </ul>
                 </li>

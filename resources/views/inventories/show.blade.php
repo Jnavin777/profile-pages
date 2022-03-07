@@ -8,11 +8,15 @@
                     <li class="breadcrumb-item active">Инвентаризация #{{ $item->id }}</li>
                 </ol>
             </div>
-            <h4 class="page-title">Инвентаризация # {{ $item->id }}</h4>
+            <h4 class="page-title">Инвентаризация # {{ $item->id }} (Отделение: {{ $item->branch->name }})</h4>
         </div>
     </x-slot>
     <x-slot name="slot">
-        <inventory-show :inventory-id="{{ $item->id }}"></inventory-show>
+        <inventory-show
+            :inventory-id="{{ $item->id }}"
+            :conditions="{{ json_encode($conditions) }}"
+            :categories="{{ json_encode($categories) }}"
+        ></inventory-show>
     </x-slot>
 
 </x-minton-layout>

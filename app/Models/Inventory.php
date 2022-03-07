@@ -18,4 +18,9 @@ class Inventory extends Model
     {
         return $this->hasMany(Item::class);
     }
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class);
+    }
 }

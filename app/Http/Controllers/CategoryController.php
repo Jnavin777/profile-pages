@@ -65,7 +65,6 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $category->name = $request->get('name');
-        $category->user_id = Auth::id();
         $category->save();
         return new JsonResponse($category, Response::HTTP_OK);
     }

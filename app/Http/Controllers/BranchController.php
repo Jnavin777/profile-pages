@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Branch;
 use App\Http\Requests\StoreBranchRequest;
 use App\Http\Requests\UpdateBranchRequest;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 
 class BranchController extends Controller
 {
@@ -15,35 +19,32 @@ class BranchController extends Controller
      */
     public function index()
     {
-        //
+        return view('branches.index');
     }
 
     /**
-     * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+//
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreBranchRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return JsonResponse
      */
-    public function store(StoreBranchRequest $request)
+    public function store(Request $request)
     {
-        //
+        $newBranch = new Branch();
+        $newBranch->name = $request->get('name');
+        $newBranch->user_id = Auth::id();
+        $newBranch->save();
+        return new JsonResponse($newBranch, Response::HTTP_OK);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Branch  $branch
-     * @return \Illuminate\Http\Response
+     * @param Branch $branch
      */
     public function show(Branch $branch)
     {
@@ -51,10 +52,7 @@ class BranchController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Branch  $branch
-     * @return \Illuminate\Http\Response
+     * @param Branch $branch
      */
     public function edit(Branch $branch)
     {
@@ -62,25 +60,31 @@ class BranchController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateBranchRequest  $request
-     * @param  \App\Models\Branch  $branch
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Branch $branch
+     * @return JsonResponse
      */
-    public function update(UpdateBranchRequest $request, Branch $branch)
+    public function update(Request $request, Branch $branch)
     {
-        //
+        $branch->name = $request->get('name');
+        $branch->save();
+        return new JsonResponse($branch, Response::HTTP_OK);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Branch  $branch
-     * @return \Illuminate\Http\Response
+     * @param Branch $branch
+     * @return JsonResponse
      */
     public function destroy(Branch $branch)
     {
-        //
+        $branch->delete();
+        return new JsonResponse([], Response::HTTP_OK);
+    }
+
+    public function getItems()
+    {
+        return new JsonResponse([
+            'branches' => Branch::where(['user_id' =>Auth::id()])->with('user')->get()
+        ], Response::HTTP_OK);
     }
 }

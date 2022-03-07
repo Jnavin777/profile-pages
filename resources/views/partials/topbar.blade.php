@@ -59,12 +59,12 @@
     <div class="logo-box">
         <a href="index.html" class="logo text-center">
                 <span class="logo-lg">
-                    <img src="assets/images/logo-dark.png" alt="" height="20">
+                    <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" height="20">
                     <!-- <span class="logo-lg-text-dark">Minton</span> -->
                 </span>
             <span class="logo-sm">
                     <!-- <span class="logo-sm-text-dark">M</span> -->
-                    <img src="assets/images/logo-sm-dark.png" alt="" height="24">
+                    <img src="{{ asset('assets/images/logo-sm-dark.png') }}" alt="" height="24">
                 </span>
         </a>
     </div>

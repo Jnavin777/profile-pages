@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Enum\ConditionEnum;
+use App\Models\Branch;
+use App\Models\Category;
 use App\Models\Inventory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -10,19 +13,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class InventoryController extends Controller
 {
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
     public function index()
     {
-        return view('inventories.index');
-    }
-
-    public function getItems()
-    {
-        return new JsonResponse([
-            'inventories' => Inventory::where(['user_id' => Auth::id()])->with('user')->get()
-        ], Response::HTTP_OK);
+        return view('inventories.index', [
+            'branches' => Branch::where(['user_id' => Auth::id()])->get()
+        ]);
     }
 
     /**
@@ -41,6 +36,7 @@ class InventoryController extends Controller
         $newInventory = new Inventory();
         $newInventory->name = $request->get('name');
         $newInventory->description = $request->get('description');
+        $newInventory->branch_id = $request->get('branch');
         $newInventory->user_id = Auth::id();
         $newInventory->save();
         return new JsonResponse($newInventory, Response::HTTP_OK);
@@ -53,7 +49,9 @@ class InventoryController extends Controller
     public function show($id)
     {
         return view('inventories.show', [
-            'item' => Inventory::find($id)
+            'item' => Inventory::find($id)->with(['branch'])->first(),
+            'conditions' => ConditionEnum::getConstants(),
+            'categories' => Category::where(['user_id' => Auth::id()])->get()
         ]);
     }
 
@@ -80,6 +78,7 @@ class InventoryController extends Controller
         $inventory = Inventory::whereId($id)->first();
         $inventory->name = $request->get('name');
         $inventory->description = $request->get('description');
+        $inventory->branch_id = $request->get('branch');
         $inventory->user_id = Auth::id();
         $inventory->save();
         return new JsonResponse($inventory, Response::HTTP_OK);
@@ -96,5 +95,13 @@ class InventoryController extends Controller
         $inventory = Inventory::find($id);
         $inventory->delete();
         return new JsonResponse([], Response::HTTP_OK);
+    }
+
+
+    public function getItems()
+    {
+        return new JsonResponse([
+            'inventories' => Inventory::where(['user_id' => Auth::id()])->with(['user','branch'])->get()
+        ], Response::HTTP_OK);
     }
 }

@@ -55,12 +55,52 @@
                     label="Name"
                     label-for="name-input"
                     invalid-feedback="Name is required"
-                    :state="nameState"
-                >
+                    :state="nameState">
                     <b-form-input
                         id="name-input"
                         v-model="form.name"
                         :state="nameState"
+                        required
+                    ></b-form-input>
+                </b-form-group>
+                <b-form-group
+                    label="Condition"
+                    label-for="condition-input">
+                    <b-form-select v-model="form.condition" :options="conditionOptions">
+                        <template #first>
+                            <b-form-select-option :value="null" disabled>-- Please select an option --</b-form-select-option>
+                        </template>
+                    </b-form-select>
+                </b-form-group>
+                <b-form-group
+                    label="Article"
+                    label-for="article-input"
+                    invalid-feedback="Article is required"
+                    :state="articleState">
+                    <b-form-input
+                        id="name-input"
+                        v-model="form.article"
+                        :state="articleState"
+                        required
+                    ></b-form-input>
+                </b-form-group>
+                <b-form-group
+                    label="Category"
+                    label-for="category-input">
+                    <b-form-select v-model="form.category" :options="categoryOptions">
+                        <template #first>
+                            <b-form-select-option :value="null" disabled>-- Please select an option --</b-form-select-option>
+                        </template>
+                    </b-form-select>
+                </b-form-group>
+
+                <b-form-group
+                    label="Date of receiving"
+                    label-for="date-of-receiving-input">
+                    <b-form-input
+                        id="date-of-receiving-input"
+                        type="date"
+                        v-model="form.dateOfReceiving"
                         required
                     ></b-form-input>
                 </b-form-group>
@@ -72,9 +112,12 @@
 <script>
 export default {
     name: "InventoryShow",
-    props: ['inventoryId'],
+    props: ['inventoryId','conditions','categories'],
     data() {
         return {
+            conditionOptions: [],
+            categoryOptions: [],
+            branchOptions: [],
             modal: {
                 action: this.CREATE,
                 title: 'Add new item',
@@ -83,9 +126,14 @@ export default {
             isBusy: false,
             currentPage: 1,
             nameState: null,
+            articleState: null,
             perPage: 25,
             form: {
-                name: null
+                name: null,
+                condition: null,
+                article: null,
+                category: null,
+                dateOfReceiving: null,
             },
             CREATE: 'CREATE',
             UPDATE: 'UPDATE',
@@ -93,6 +141,10 @@ export default {
             fields: [
                 {key:'id'},
                 {key:'name'},
+                {key:'condition'},
+                {key:'article'},
+                {key:'category'},
+                {key:'dateOfReceiving'},
                 {key:'actions'},
             ]
         }
@@ -103,7 +155,13 @@ export default {
         // },
         onEdit(item) {
             this.form.name = item.name;
+            this.form.condition = item.condition;
+            this.form.article = item.article;
+            this.form.category = item.category;
+            this.form.dateOfReceiving = item.dateOfReceiving;
+
             this.modal.action = this.UPDATE;
+            this.modal.editItemId = item.id;
             this.modal.editItemId = item.id;
             this.modal.title = 'Update item #'+item.id;
             this.$bvModal.show('modal-item');
@@ -117,7 +175,11 @@ export default {
         },
         resetModal(){
             this.form = {
-                name: null
+                name: null,
+                condition: null,
+                article: null,
+                category: null,
+                dateOfReceiving: null,
             }
             this.modal = {
                 action: this.CREATE,
@@ -157,6 +219,18 @@ export default {
     created() {
         this.getItems();
         this.resetModal();
+        this.conditionOptions = Object.values(this.conditions).map( item => {
+            return {
+                value: item,
+                text: item
+            }
+        })
+        this.categoryOptions = this.categories.map( item => {
+            return {
+                value: item.id,
+                text: item.name
+            }
+        })
     }
 }
 </script>

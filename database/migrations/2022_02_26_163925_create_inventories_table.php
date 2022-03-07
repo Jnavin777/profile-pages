@@ -15,9 +15,10 @@ class CreateInventoryTable extends Migration
     {
         Schema::create('inventory', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 255);
+            $table->string('name', 255)->nullable(false);
             $table->string('description');
-            $table->integer('user_id');
+            $table->integer('branch_id');
+            $table->integer('user_id')->nullable(false);
             $table->timestamps();
         });
     }
