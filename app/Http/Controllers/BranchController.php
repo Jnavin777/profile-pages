@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Branch;
 use App\Http\Requests\StoreBranchRequest;
 use App\Http\Requests\UpdateBranchRequest;
+use App\Models\Inventory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -48,7 +49,9 @@ class BranchController extends Controller
      */
     public function show(Branch $branch)
     {
-        //
+        return view('branches.show', [
+            'item' => $branch
+        ]);
     }
 
     /**
@@ -83,8 +86,29 @@ class BranchController extends Controller
 
     public function getItems()
     {
-        return new JsonResponse([
-            'branches' => Branch::where(['user_id' =>Auth::id()])->with('user')->get()
-        ], Response::HTTP_OK);
+        $branches = Branch::where(['user_id' =>Auth::id()])->with('user')->get();
+
+        $data = [];
+        if(!empty($branches)) {
+            foreach ($branches as $key => $branch) {
+                $data[$key]['branch'] = $branch;
+                $data[$key]['totalItems'] = $branch->inventories()->count();
+            }
+        }
+        return new JsonResponse($data, Response::HTTP_OK);
+    }
+
+    public function getInventories(int $id)
+    {
+        $inventories = Inventory::where(['user_id' => Auth::id()])->with(['user','branch',])->get();
+
+        $data = [];
+        if(!empty($inventories)) {
+            foreach ($inventories as $key => $inventory) {
+                $data[$key]['inventory'] = $inventory;
+                $data[$key]['totalItems'] = $inventory->items()->count();
+            }
+        }
+        return new JsonResponse($data, Response::HTTP_OK);
     }
 }

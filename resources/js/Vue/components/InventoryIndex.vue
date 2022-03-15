@@ -37,7 +37,7 @@
                     <b-button variant="warning" size="sm" @click="onEdit(row.item)" class="mr-1">
                         Edit
                     </b-button>
-                    <b-button variant="danger" size="sm" @click="onDelete(row.item)">
+                    <b-button variant="danger" size="sm" @click="confirmModal(row.item)">
                         Delete
                     </b-button>
                 </template>
@@ -117,16 +117,27 @@ export default {
             UPDATE: 'UPDATE',
             items: [],
             fields: [
-                {key:'id'},
-                {key:'name'},
-                {key:'description'},
-                {key:'user.name'},
-                {key:'branch.name'},
-                {key:'actions'},
+                {key:'id', label:'ID'},
+                {key:'name', label: 'Name'},
+                {key:'description', label: 'Description'},
+                {key:'branch.name', label: 'Branch'},
+                {key:'totalItems', label: 'Items'},
+                {key:'actions', label: 'Actions'},
             ]
         }
     },
     methods: {
+        confirmModal(item) {
+            let confirmMessage = item.totalItems
+                ? 'Are you sure? This Inventory has '+item.totalItems+' items'
+                : 'Are you sure?'
+            this.$bvModal.msgBoxConfirm(confirmMessage)
+                .then(value => {
+                    if(value) {
+                        this.onDelete(item)
+                    }
+                });
+        },
         onEdit(item) {
             this.form.name = item.name;
             this.form.description = item.description;
@@ -174,8 +185,11 @@ export default {
         getItems() {
             this.isBusy = true;
             axios.get(window.routes.inventory_get_items)
-                .then((response)=>{
-                    this.items = response.data.inventories;
+                .then(({data: response})=>{
+                    this.items = response.map(item => {
+                        item.inventory.totalItems = item.totalItems
+                        return item.inventory
+                    });
                     this.isBusy = false;
                 })
         },

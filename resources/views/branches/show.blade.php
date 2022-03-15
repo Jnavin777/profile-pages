@@ -12,7 +12,7 @@
         </div>
     </x-slot>
     <x-slot name="slot">
-        {{--        <inventory-show></inventory-show>--}}
+        <branch-show :branch-id="{{ $item->id }}"></branch-show>
     </x-slot>
 
 </x-minton-layout>

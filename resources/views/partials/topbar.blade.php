@@ -4,7 +4,7 @@
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                     <span class="pro-user-name ml-1">
-                        Nik Patel <i class="mdi mdi-chevron-down"></i>
+                        {{ Auth::user()->name }} <i class="mdi mdi-chevron-down"></i>
                     </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
@@ -23,12 +23,6 @@
                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                     <i class="remixicon-settings-3-line"></i>
                     <span>Settings</span>
-                </a>
-
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <i class="remixicon-wallet-line"></i>
-                    <span>My Wallet <span class="badge badge-success float-right">3</span> </span>
                 </a>
 
                 <!-- item-->
@@ -59,7 +53,7 @@
     <div class="logo-box">
         <a href="index.html" class="logo text-center">
                 <span class="logo-lg">
-                    <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" height="20">
+                    <img src="{{ asset('assets/images/logo-new.png') }}" alt="" height="60">
                     <!-- <span class="logo-lg-text-dark">Minton</span> -->
                 </span>
             <span class="logo-sm">
@@ -78,32 +72,20 @@
 
         <li class="dropdown d-none d-lg-block">
             <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                Create New
+                Создать
                 <i class="mdi mdi-chevron-down"></i>
             </a>
             <div class="dropdown-menu">
                 <!-- item-->
                 <a href="javascript:void(0);" class="dropdown-item">
                     <i class="fe-briefcase mr-1"></i>
-                    <span>New Projects</span>
+                    <span>Новое отделение</span>
                 </a>
 
                 <!-- item-->
                 <a href="javascript:void(0);" class="dropdown-item">
                     <i class="fe-user mr-1"></i>
-                    <span>Create Users</span>
-                </a>
-
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item">
-                    <i class="fe-bar-chart-line- mr-1"></i>
-                    <span>Revenue Report</span>
-                </a>
-
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item">
-                    <i class="fe-settings mr-1"></i>
-                    <span>Settings</span>
+                    <span>Новую инвентаризацию</span>
                 </a>
 
                 <div class="dropdown-divider"></div>
@@ -111,7 +93,7 @@
                 <!-- item-->
                 <a href="javascript:void(0);" class="dropdown-item">
                     <i class="fe-headphones mr-1"></i>
-                    <span>Help & Support</span>
+                    <span>Техподдержка</span>
                 </a>
 
             </div>

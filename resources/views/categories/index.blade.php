@@ -7,7 +7,7 @@
                     <li class="breadcrumb-item active">Categories</li>
                 </ol>
             </div>
-            <h4 class="page-title">Categories</h4>
+            <h4 class="page-title">Все категории</h4>
         </div>
     </x-slot>
     <x-slot name="slot">

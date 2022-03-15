@@ -87,13 +87,21 @@
                 <b-form-group
                     label="Category"
                     label-for="category-input">
-                    <b-form-select v-model="form.category" :options="categoryOptions">
+                    <b-form-select v-model="form.categoryId" :options="categoryOptions">
                         <template #first>
                             <b-form-select-option :value="null" disabled>-- Please select an option --</b-form-select-option>
                         </template>
                     </b-form-select>
                 </b-form-group>
-
+<!--                <b-form-group-->
+<!--                    label="Branch"-->
+<!--                    label-for="branch-input">-->
+<!--                    <b-form-select v-model="form.branchId" :options="branchOptions">-->
+<!--                        <template #first>-->
+<!--                            <b-form-select-option :value="null" disabled>&#45;&#45; Please select an option &#45;&#45;</b-form-select-option>-->
+<!--                        </template>-->
+<!--                    </b-form-select>-->
+<!--                </b-form-group>-->
                 <b-form-group
                     label="Date of receiving"
                     label-for="date-of-receiving-input">
@@ -112,7 +120,7 @@
 <script>
 export default {
     name: "InventoryShow",
-    props: ['inventoryId','conditions','categories'],
+    props: ['inventoryId','conditions','categories','branches'],
     data() {
         return {
             conditionOptions: [],
@@ -132,20 +140,21 @@ export default {
                 name: null,
                 condition: null,
                 article: null,
-                category: null,
+                categoryId: null,
+                // branchId: null,
                 dateOfReceiving: null,
             },
             CREATE: 'CREATE',
             UPDATE: 'UPDATE',
             items: [],
             fields: [
-                {key:'id'},
-                {key:'name'},
-                {key:'condition'},
-                {key:'article'},
-                {key:'category'},
-                {key:'dateOfReceiving'},
-                {key:'actions'},
+                {key:'id', label:'ID'},
+                {key:'name', label:'Name'},
+                {key:'condition', label:'Condition'},
+                {key:'article', label:'Article'},
+                {key:'category.name', label:'Category'},
+                {key:'date_of_receiving', label:'Date of receiving'},
+                {key:'actions', label:'Actions'},
             ]
         }
     },
@@ -154,14 +163,15 @@ export default {
         //     axios.get('item/'+item.id);
         // },
         onEdit(item) {
+            console.log(item);
             this.form.name = item.name;
             this.form.condition = item.condition;
             this.form.article = item.article;
-            this.form.category = item.category;
+            this.form.categoryId = item.category_id;
+            // this.form.branchId = item.branch_id;
             this.form.dateOfReceiving = item.dateOfReceiving;
 
             this.modal.action = this.UPDATE;
-            this.modal.editItemId = item.id;
             this.modal.editItemId = item.id;
             this.modal.title = 'Update item #'+item.id;
             this.$bvModal.show('modal-item');
@@ -178,7 +188,8 @@ export default {
                 name: null,
                 condition: null,
                 article: null,
-                category: null,
+                categoryId: null,
+                // branchId: null,
                 dateOfReceiving: null,
             }
             this.modal = {
@@ -191,13 +202,14 @@ export default {
             if(!this.validate()) {
                 return false;
             }
+            this.form.inventoryId = this.inventoryId;
             if(this.modal.action === this.CREATE) {
                 axios.post(window.routes.item_store, this.form)
                     .then((response)=>{
                         this.getItems();
                     });
             } else if(this.modal.action === this.UPDATE) {
-                axios.patch('item/'+this.modal.editItemId, this.form)
+                axios.patch('/item/'+this.modal.editItemId, this.form)
                     .then((response)=>{
                         this.getItems();
                     })
@@ -231,6 +243,12 @@ export default {
                 text: item.name
             }
         })
+        // this.branchOptions = this.branches.map( item => {
+        //     return {
+        //         value: item.id,
+        //         text: item.name
+        //     }
+        // })
     }
 }
 </script>

@@ -7,7 +7,7 @@
                     <li class="breadcrumb-item active">Инвентаризации</li>
                 </ol>
             </div>
-            <h4 class="page-title">Инвентаризации</h4>
+            <h4 class="page-title">Все инвентаризации</h4>
         </div>
     </x-slot>
     <x-slot name="slot">

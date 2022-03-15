@@ -16,6 +16,7 @@
             :inventory-id="{{ $item->id }}"
             :conditions="{{ json_encode($conditions) }}"
             :categories="{{ json_encode($categories) }}"
+            :branches="{{ json_encode($branches) }}"
         ></inventory-show>
     </x-slot>
 

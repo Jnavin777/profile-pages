@@ -14,8 +14,8 @@ class Branch extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function inventory()
+    public function inventories()
     {
-        return $this->belongsTo(Inventory::class);
+        return $this->hasMany(Inventory::class);
     }
 }

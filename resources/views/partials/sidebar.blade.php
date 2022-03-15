@@ -15,7 +15,12 @@
                         <span> Dashboards </span>
                     </a>
                 </li>
-
+                <li>
+                    <a href="{{ route('branch.index') }}" class="waves-effect">
+                        <i class="remixicon-layout-line"></i>
+                        <span> Отделения </span>
+                    </a>
+                </li>
                 <li>
                     <a href="{{ route('inventory.index') }}" class="waves-effect">
                         <i class="remixicon-layout-line"></i>
@@ -29,12 +34,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('branch.index') }}" class="waves-effect">
-                        <i class="remixicon-layout-line"></i>
-                        <span> Отделения </span>
-                    </a>
-                </li>
-                <li>
                     <a href="javascript: void(0);" class="waves-effect">
                         <i class="remixicon-mail-open-line"></i>
                         <span> Создать </span>
@@ -42,13 +41,13 @@
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
                         <li>
-                            <a href="email-inbox.html">Новая категория</a>
+                            <a href="email-compose.html">Новое отделение</a>
                         </li>
                         <li>
                             <a href="email-read.html">Новая инвентаризация</a>
                         </li>
                         <li>
-                            <a href="email-compose.html">Новое отделение</a>
+                            <a href="email-inbox.html">Новая категория</a>
                         </li>
                     </ul>
                 </li>

@@ -49,9 +49,10 @@ class InventoryController extends Controller
     public function show($id)
     {
         return view('inventories.show', [
-            'item' => Inventory::find($id)->with(['branch'])->first(),
+            'item' => Inventory::where(['id' => $id])->with(['branch'])->first(),
             'conditions' => ConditionEnum::getConstants(),
-            'categories' => Category::where(['user_id' => Auth::id()])->get()
+            'categories' => Category::where(['user_id' => Auth::id()])->get(),
+            'branches' => Branch::where(['user_id' => Auth::id()])->get()
         ]);
     }
 
@@ -93,6 +94,7 @@ class InventoryController extends Controller
     public function destroy(int $id)
     {
         $inventory = Inventory::find($id);
+        $inventory->items()->delete();
         $inventory->delete();
         return new JsonResponse([], Response::HTTP_OK);
     }
@@ -100,8 +102,15 @@ class InventoryController extends Controller
 
     public function getItems()
     {
-        return new JsonResponse([
-            'inventories' => Inventory::where(['user_id' => Auth::id()])->with(['user','branch'])->get()
-        ], Response::HTTP_OK);
+        $inventories = Inventory::where(['user_id' => Auth::id()])->with(['user','branch',])->get();
+
+        $data = [];
+        if(!empty($inventories)) {
+            foreach ($inventories as $key => $inventory) {
+                $data[$key]['inventory'] = $inventory;
+                $data[$key]['totalItems'] = $inventory->items()->count();
+            }
+        }
+        return new JsonResponse($data, Response::HTTP_OK);
     }
 }

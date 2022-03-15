@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Minton - Responsive Admin Dashboard Template</title>
+    <title>Business Help - Inventory</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
@@ -252,7 +252,6 @@
         'branch_store' : '{{ route('branch.store') }}',
         'branch_get_items' : '{{ route('branch.get-items') }}',
         'item_store' : '{{ route('item.store') }}',
-
     }
 </script>
 <!-- Vendor js -->

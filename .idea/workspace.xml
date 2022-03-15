@@ -2,32 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="706fd39b-0dfe-4f58-9608-5522654a7305" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Enum/Base/AbstractEnum.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Enum/ConditionEnum.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/Vue/components/BranchIndex.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/branches/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/branches/show.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/images/logo-new.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Vue/components/BranchShow.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BranchController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BranchController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/InventoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/InventoryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ItemController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ItemController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Branch.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Branch.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Inventory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Inventory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2022_02_26_163925_create_inventories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2022_02_26_163925_create_inventories_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2022_03_03_225907_create_items_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2022_03_03_225907_create_items_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2022_03_04_221918_create_categories_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2022_03_04_221918_create_categories_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2022_03_04_224014_create_branches_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2022_03_04_224014_create_branches_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Vue/components/BranchIndex.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Vue/components/BranchIndex.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Vue/components/InventoryIndex.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Vue/components/InventoryIndex.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Vue/components/InventoryShow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Vue/components/InventoryShow.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/categories/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/categories/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/branches/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/branches/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/branches/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/branches/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/categories/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/categories/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/inventories/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/inventories/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/inventories/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/inventories/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/minton.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/minton.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partials/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/footer.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/partials/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/sidebar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/partials/topbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/topbar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
@@ -175,18 +170,18 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/Vue/components" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/assets/images" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="C:\Users\Иван\AppData\Local\JetBrains\PhpStorm 2020.2.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\xampp\htdocs\items.loc\public\assets\images" />
       <recent name="E:\xampp\htdocs\items.loc\resources\js\Vue\components" />
       <recent name="E:\xampp\htdocs\items.loc\resources\views" />
       <recent name="E:\xampp\htdocs\items.loc\app\Http\Controllers" />
       <recent name="E:\xampp\htdocs\items.loc\app" />
-      <recent name="E:\xampp\htdocs\items.loc\resources\views\inventories" />
     </key>
   </component>
   <component name="RunManager">
@@ -207,7 +202,9 @@
       <workItem from="1645993329514" duration="43585000" />
       <workItem from="1646515282432" duration="3826000" />
       <workItem from="1646580223695" duration="5799000" />
-      <workItem from="1646594993476" duration="8727000" />
+      <workItem from="1646594993476" duration="12486000" />
+      <workItem from="1646947041026" duration="5664000" />
+      <workItem from="1647295017700" duration="6212000" />
     </task>
     <servers />
   </component>
@@ -219,17 +216,21 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1645915522598" />
-    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1646604334017">
+    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1646949139669">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1646604334017" />
-    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1646588591492">
+    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1646949139669" />
+    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1646951226836">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1646588591492" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1646585822332">
+    <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1646951226836" />
+    <state x="616" y="235" key="run.anything.popup" timestamp="1646950059321">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1646585822332" />
+    <state x="616" y="235" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1646950059321" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1646864290636">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1646864290636" />
   </component>
 </project>

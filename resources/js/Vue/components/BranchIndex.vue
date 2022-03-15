@@ -31,9 +31,9 @@
                     </div>
                 </template>
                 <template #cell(actions)="row">
-<!--                    <b-button variant="info" size="sm" :href="'branch/'+row.item.id" class="mr-1">-->
-<!--                        <b-icon icon="eye"></b-icon>-->
-<!--                    </b-button>-->
+                    <b-button variant="info" size="sm" :href="'branch/'+row.item.id" class="mr-1">
+                        <b-icon icon="eye"></b-icon>
+                    </b-button>
                     <b-button variant="warning" size="sm" @click="onEdit(row.item)" class="mr-1">
                         Edit
                     </b-button>
@@ -92,7 +92,7 @@ export default {
             fields: [
                 {key:'id'},
                 {key:'name'},
-                {key:'user.name'},
+                {key:'totalItems', label: 'Inventories'},
                 {key:'actions'},
             ]
         }
@@ -141,8 +141,11 @@ export default {
         getItems() {
             this.isBusy = true;
             axios.get(window.routes.branch_get_items)
-                .then((response)=>{
-                    this.items = response.data.branches;
+                .then(({data: response})=>{
+                    this.items = response.map(item => {
+                        item.branch.totalItems = item.totalItems
+                        return item.branch
+                    });
                     this.isBusy = false;
                 })
         },
