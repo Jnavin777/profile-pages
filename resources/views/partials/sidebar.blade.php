@@ -7,12 +7,12 @@
 
             <ul class="metismenu" id="side-menu">
 
-                <li class="menu-title">Navigation</li>
+                <li class="menu-title">Навигация</li>
 
                 <li>
                     <a href="{{ route('dashboard') }}" class="waves-effect">
                         <i class="remixicon-dashboard-line"></i>
-                        <span> Dashboards </span>
+                        <span> Главная </span>
                     </a>
                 </li>
                 <li>
@@ -34,6 +34,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('teams.index') }}" class="waves-effect">
+                        <i class="remixicon-layout-line"></i>
+                        <span> Команды </span>
+                    </a>
+                </li>
+                <li>
                     <a href="javascript: void(0);" class="waves-effect">
                         <i class="remixicon-mail-open-line"></i>
                         <span> Создать </span>
@@ -48,6 +54,9 @@
                         </li>
                         <li>
                             <a href="email-inbox.html">Новая категория</a>
+                        </li>
+                        <li>
+                            <a href="{{route('teams.create')}}">Новая команда</a>
                         </li>
                     </ul>
                 </li>

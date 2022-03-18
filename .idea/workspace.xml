@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="706fd39b-0dfe-4f58-9608-5522654a7305" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Models/Team.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/items.loc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/items.loc.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/teamwork.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/teamwork.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partials/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +185,7 @@
       <workItem from="1646580223695" duration="5799000" />
       <workItem from="1646594993476" duration="12486000" />
       <workItem from="1646947041026" duration="5664000" />
-      <workItem from="1647295017700" duration="7530000" />
+      <workItem from="1647295017700" duration="11470000" />
     </task>
     <servers />
   </component>
@@ -203,10 +201,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1646949139669" />
-    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1646951226836">
+    <state x="667" y="253" width="585" height="534" key="find.popup" timestamp="1647639156114">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1646951226836" />
+    <state x="667" y="253" width="585" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1647639156114" />
     <state x="616" y="235" key="run.anything.popup" timestamp="1646950059321">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
