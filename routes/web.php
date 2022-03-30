@@ -6,6 +6,7 @@ use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +19,9 @@ use App\Http\Controllers\BranchController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'auth.lock'])->group(function () {
     Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
+    Route::get('/', [DashboardController::class,'index'])->name('dashboard');
     Route::get('/inventory', [InventoryController::class,'index'])->name('inventory.index');
     Route::post('/inventory', [InventoryController::class,'store'])->name('inventory.store');
     Route::patch('/inventory/{id}', [InventoryController::class,'update'])->name('inventory.update');
@@ -42,7 +40,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/inventory/{inventory}/get_item', [ItemController::class,'getItemsByInventory'])->name('category.get-items-by-inventory');
 
 });
-
+Route::get('login/locked', [LoginController::class, 'locked'])->middleware('auth')->name('login.locked');
+Route::post('login/locked', [LoginController::class, 'unlock'])->name('login.unlock');
+Route::get('/to-locked', [LoginController::class, 'toLocked'])->name('login.toLocked');
 
 require __DIR__.'/auth.php';
 

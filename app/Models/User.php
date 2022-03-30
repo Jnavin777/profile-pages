@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Mpociot\Teamwork\Traits\UserHasTeams;
+use App\Traits\LockableTrait;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, UserHasTeams;
+    use HasFactory, Notifiable, UserHasTeams, LockableTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'lockout_time'
     ];
 
     /**
