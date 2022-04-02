@@ -11,9 +11,7 @@
         </div>
     </x-slot>
     <x-slot name="slot">
-        <inventory-index
-            :branches="{{ json_encode($branches) }}"
-        ></inventory-index>
+        <inventory-index></inventory-index>
     </x-slot>
 
 </x-minton-layout>

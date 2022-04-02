@@ -1,4 +1,6 @@
 import test from "./Vue/test";
+import AsyncComputed from 'vue-async-computed'
+
 import InventoryIndex from "./Vue/components/InventoryIndex";
 
 require('./bootstrap');
@@ -18,10 +20,13 @@ import CategoryIndex from "./Vue/components/CategoryIndex";
 import BranchIndex from "./Vue/components/BranchIndex";
 import BranchShow from "./Vue/components/BranchShow";
 import CreateUpdateBranchModal from "./Vue/components/Modals/CreateUpdateBranchModal";
+import CreateUpdateInventoryModal from "./Vue/components/Modals/CreateUpdateInventoryModal";
 
 Vue.prototype.console = console;
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
+Vue.use(AsyncComputed)
+
 Vue.component('test-test', test);
 Vue.component(InventoryIndex.name, InventoryIndex);
 Vue.component(InventoryShow.name, InventoryShow);
@@ -30,5 +35,6 @@ Vue.component(CategoryIndex.name, CategoryIndex);
 Vue.component(BranchIndex.name, BranchIndex);
 Vue.component(BranchShow.name, BranchShow);
 Vue.component(CreateUpdateBranchModal.name, CreateUpdateBranchModal);
+Vue.component(CreateUpdateInventoryModal.name, CreateUpdateInventoryModal);
 
 new Vue().$mount('#wrapper')

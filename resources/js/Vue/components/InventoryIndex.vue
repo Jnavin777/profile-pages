@@ -1,22 +1,21 @@
 <template>
     <div>
-<!--        <simple-table :inventories="inventories" :fields="fields"></simple-table>-->
-            <b-row>
-                <b-col cols="2">
-                    <b-button variant="success" v-b-modal.modal-inventory>Add new inventory</b-button>
-                </b-col>
-                <b-col cols="10">
-                    <b-pagination
-                        align="right"
-                        v-model="currentPage"
-                        :total-rows="items.length"
-                        :per-page="perPage"
-                        aria-controls="my-table"
-                    ></b-pagination>
-                </b-col>
-            </b-row>
+        <b-row>
+            <b-col cols="2">
+                <b-button variant="success" v-b-modal.modal-inventory>Add new inventory</b-button>
+            </b-col>
+            <b-col cols="10">
+                <b-pagination
+                    align="right"
+                    v-model="currentPage"
+                    :total-rows="items.length"
+                    :per-page="perPage"
+                    aria-controls="my-table"
+                ></b-pagination>
+            </b-col>
+        </b-row>
         <div class="overflow-auto">
-            <b-table striped hover
+            <b-table hover
                      :busy="isBusy"
                      id="my-table"
                      :items="items"
@@ -37,57 +36,17 @@
                     <b-button variant="warning" size="sm" @click="onEdit(row.item)" class="mr-1">
                         Edit
                     </b-button>
-                    <b-button variant="danger" size="sm" @click="confirmModal(row.item)">
+                    <b-button variant="danger" size="sm" @click="confirmDelete(row.item)">
                         Delete
                     </b-button>
                 </template>
             </b-table>
         </div>
-        <b-modal
-            id="modal-inventory"
-            ref="modal"
-            :title="modal.title"
-            @hidden="resetModal"
-            @ok="handleOk"
-        >
-            <form ref="form" @submit.stop.prevent="handleSubmit">
-                <b-form-group
-                    label="Name"
-                    label-for="name-input"
-                    invalid-feedback="Name is required"
-                    :state="nameState"
-                >
-                    <b-form-input
-                        id="name-input"
-                        v-model="form.name"
-                        :state="nameState"
-                        required
-                    ></b-form-input>
-                </b-form-group>
-                <b-form-group
-                    label="Description"
-                    label-for="description-input"
-                    invalid-feedback="Description is required"
-                    :state="descriptionState"
-                >
-                    <b-form-textarea
-                        id="description-input"
-                        v-model="form.description"
-                        :state="descriptionState"
-                        required
-                    ></b-form-textarea>
-                </b-form-group>
-                <b-form-group
-                    label="Branch"
-                    label-for="branch-input">
-                    <b-form-select v-model="form.branch" :options="branchOptions">
-                        <template #first>
-                            <b-form-select-option :value="null" disabled>-- Please select an option --</b-form-select-option>
-                        </template>
-                    </b-form-select>
-                </b-form-group>
-            </form>
-        </b-modal>
+        <create-update-inventory-modal
+            :action="actionModal"
+            :inventory="inventory"
+            @updateInventory="getItems">
+        </create-update-inventory-modal>
     </div>
 </template>
 
@@ -97,24 +56,17 @@ export default {
     props: ['branches'],
     data() {
         return {
-            branchOptions: [],
-            modal: {
-                action: this.CREATE,
-                title: 'Create inventory',
-                editItemId: null
-            },
+            actionModal: 'CREATE',
+            CREATE: 'CREATE',
+            UPDATE: 'UPDATE',
             isBusy: false,
             currentPage: 1,
-            nameState: null,
-            descriptionState: null,
             perPage: 25,
-            form: {
+            inventory: {
                 name: null,
                 description: null,
                 branch: null
             },
-            CREATE: 'CREATE',
-            UPDATE: 'UPDATE',
             items: [],
             fields: [
                 {key:'id', label:'ID'},
@@ -127,7 +79,7 @@ export default {
         }
     },
     methods: {
-        confirmModal(item) {
+        confirmDelete(item) {
             let confirmMessage = item.totalItems
                 ? 'Are you sure? This Inventory has '+item.totalItems+' items'
                 : 'Are you sure?'
@@ -139,48 +91,18 @@ export default {
                 });
         },
         onEdit(item) {
-            this.form.name = item.name;
-            this.form.description = item.description;
-            this.form.branch = item.branch ? item.branch.id : null;
-            this.modal.action = this.UPDATE;
-            this.modal.editItemId = item.id;
-            this.modal.title = 'Update inventory #'+item.id;
+            this.actionModal = this.UPDATE;
+            this.inventory.id = item.id;
+            this.inventory.name = item.name;
+            this.inventory.description = item.description;
+            this.inventory.branch = item.branch ? item.branch.id : null;
             this.$bvModal.show('modal-inventory');
-
         },
         onDelete(item) {
             axios.delete('inventory/'+item.id)
                 .then((response)=>{
                     this.getItems();
                 })
-        },
-        resetModal(){
-            this.form = {
-                name: null,
-                description: null,
-                branch: null
-            }
-            this.modal = {
-                action: this.CREATE,
-                title: 'Create new inventory',
-                editItemId: null
-            }
-        },
-        handleOk() {
-            if(!this.validate()) {
-                return false;
-            }
-            if(this.modal.action === this.CREATE) {
-                axios.post(window.routes.inventory_store, this.form)
-                    .then((response)=>{
-                        this.getItems();
-                    });
-            } else if(this.modal.action === this.UPDATE) {
-                axios.patch('inventory/'+this.modal.editItemId, this.form)
-                    .then((response)=>{
-                        this.getItems();
-                    })
-            }
         },
         getItems() {
             this.isBusy = true;
@@ -193,20 +115,9 @@ export default {
                     this.isBusy = false;
                 })
         },
-        validate() {
-            let result = true;
-            return result
-        }
     },
     created() {
         this.getItems();
-        this.resetModal();
-        this.branchOptions = this.branches.map(item => {
-            return {
-                value: item.id,
-                text: item.name
-            }
-        });
     }
 }
 </script>

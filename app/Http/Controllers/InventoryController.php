@@ -15,9 +15,7 @@ class InventoryController extends Controller
 {
     public function index()
     {
-        return view('inventories.index', [
-            'branches' => Branch::where(['user_id' => Auth::id()])->get()
-        ]);
+        return view('inventories.index');
     }
 
     /**
@@ -52,7 +50,6 @@ class InventoryController extends Controller
             'item' => Inventory::where(['id' => $id])->with(['branch'])->first(),
             'conditions' => ConditionEnum::getConstants(),
             'categories' => Category::where(['user_id' => Auth::id()])->get(),
-            'branches' => Branch::where(['user_id' => Auth::id()])->get()
         ]);
     }
 
@@ -68,15 +65,12 @@ class InventoryController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param Request $request
+     * @param Inventory $inventory
      * @return JsonResponse
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, Inventory $inventory)
     {
-        $inventory = Inventory::whereId($id)->first();
         $inventory->name = $request->get('name');
         $inventory->description = $request->get('description');
         $inventory->branch_id = $request->get('branch');

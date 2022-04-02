@@ -1,20 +1,19 @@
 <template>
     <div>
-<!--        <simple-table :inventories="items" :fields="fields"></simple-table>-->
-            <b-row>
-                <b-col cols="2">
-                    <b-button variant="success" @click="createBranch">Add new branch</b-button>
-                </b-col>
-                <b-col cols="10">
-                    <b-pagination
-                        align="right"
-                        v-model="currentPage"
-                        :total-rows="items.length"
-                        :per-page="perPage"
-                        aria-controls="my-table"
-                    ></b-pagination>
-                </b-col>
-            </b-row>
+        <b-row>
+            <b-col cols="2">
+                <b-button variant="success" @click="createBranch">Add new branch</b-button>
+            </b-col>
+            <b-col cols="10">
+                <b-pagination
+                    align="right"
+                    v-model="currentPage"
+                    :total-rows="items.length"
+                    :per-page="perPage"
+                    aria-controls="my-table"
+                ></b-pagination>
+            </b-col>
+        </b-row>
         <div class="overflow-auto">
             <b-table striped hover
                      :busy="isBusy"
@@ -37,13 +36,17 @@
                     <b-button variant="warning" size="sm" @click="onEdit(row.item)" class="mr-1">
                         Edit
                     </b-button>
-                    <b-button variant="danger" size="sm" @click="onDelete(row.item)">
+                    <b-button variant="danger" size="sm" @click="confirmDelete(row.item)">
                         Delete
                     </b-button>
                 </template>
             </b-table>
         </div>
-        <create-update-branch-modal :action="actionModal" :branch="branch" @updateBranch="getItems"></create-update-branch-modal>
+        <create-update-branch-modal
+            :action="actionModal"
+            :branch="branch"
+            @updateBranch="getItems">
+        </create-update-branch-modal>
     </div>
 </template>
 
@@ -89,6 +92,17 @@ export default {
             this.branch.name = item.name;
             this.branch.id = item.id;
             this.$bvModal.show('modal-branch');
+        },
+        confirmDelete(item) {
+            let confirmMessage = item.totalItems
+                ? 'Are you sure? This Branch has '+item.totalItems+' inventories'
+                : 'Are you sure?'
+            this.$bvModal.msgBoxConfirm(confirmMessage)
+                .then(value => {
+                    if(value) {
+                        this.onDelete(item)
+                    }
+                });
         },
         onDelete(item) {
             axios.delete('branch/'+item.id)

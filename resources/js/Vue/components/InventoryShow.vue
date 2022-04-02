@@ -3,6 +3,7 @@
 <!--        <simple-table :inventories="inventories" :fields="fields"></simple-table>-->
             <b-row>
                 <b-col cols="2">
+                    <b-button variant="warning" @click="editInventory">Edit inventory</b-button>
                     <b-button variant="success" v-b-modal.modal-item>Add new item</b-button>
                 </b-col>
                 <b-col cols="10">
@@ -43,6 +44,10 @@
                 </template>
             </b-table>
         </div>
+        <create-update-inventory-modal
+            :action="actionModal"
+            :inventory="inventory"
+            @updateInventory="getItems"></create-update-inventory-modal>
         <b-modal
             id="modal-item"
             ref="modal"
@@ -120,12 +125,12 @@
 <script>
 export default {
     name: "InventoryShow",
-    props: ['inventoryId','conditions','categories','branches'],
+    props: ['inventory','conditions','categories'],
     data() {
         return {
+            actionModal: 'UPDATE',
             conditionOptions: [],
             categoryOptions: [],
-            branchOptions: [],
             modal: {
                 action: this.CREATE,
                 title: 'Add new item',
@@ -159,11 +164,13 @@ export default {
         }
     },
     methods: {
-        // onShow(item){
-        //     axios.get('item/'+item.id);
-        // },
+        updatedInventory() {
+            window.location.reload()
+        },
+        editInventory() {
+            this.$bvModal.show('modal-inventory');
+        },
         onEdit(item) {
-            console.log(item);
             this.form.name = item.name;
             this.form.condition = item.condition;
             this.form.article = item.article;
@@ -189,7 +196,6 @@ export default {
                 condition: null,
                 article: null,
                 categoryId: null,
-                // branchId: null,
                 dateOfReceiving: null,
             }
             this.modal = {
@@ -243,12 +249,6 @@ export default {
                 text: item.name
             }
         })
-        // this.branchOptions = this.branches.map( item => {
-        //     return {
-        //         value: item.id,
-        //         text: item.name
-        //     }
-        // })
     }
 }
 </script>

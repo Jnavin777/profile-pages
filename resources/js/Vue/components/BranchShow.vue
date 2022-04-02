@@ -43,7 +43,11 @@
                 </template>
             </b-table>
         </div>
-        <create-update-branch-modal :action="actionModal" :branch="branch" @updateBranch="updatedBranch"></create-update-branch-modal>
+        <create-update-branch-modal
+            :action="actionModal"
+            :branch="branch"
+            @updateBranch="updatedBranch">
+        </create-update-branch-modal>
 
         <b-modal
             id="modal-item"
