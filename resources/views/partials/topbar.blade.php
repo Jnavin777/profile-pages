@@ -34,10 +34,13 @@
                 <div class="dropdown-divider"></div>
 
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item notify-item">
                     <i class="remixicon-logout-box-line"></i>
                     <span>Выйти</span>
                 </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
 
             </div>
         </li>
@@ -51,15 +54,15 @@
 
     <!-- LOGO -->
     <div class="logo-box">
-        <a href="index.html" class="logo text-center">
-                <span class="logo-lg">
-                    <img src="{{ asset('assets/images/logo-new.png') }}" alt="" height="60">
-                    <!-- <span class="logo-lg-text-dark">Minton</span> -->
-                </span>
+        <a href="{{ route('dashboard') }}" class="logo text-center">
+            <span class="logo-lg">
+                <img src="{{ asset('assets/images/logo-new.png') }}" alt="" height="60">
+                <!-- <span class="logo-lg-text-dark">Minton</span> -->
+            </span>
             <span class="logo-sm">
-                    <!-- <span class="logo-sm-text-dark">M</span> -->
-                    <img src="{{ asset('assets/images/logo-sm-dark.png') }}" alt="" height="24">
-                </span>
+                <!-- <span class="logo-sm-text-dark">M</span> -->
+                <img src="{{ asset('assets/images/logo-sm-dark.png') }}" alt="" height="24">
+            </span>
         </a>
     </div>
 

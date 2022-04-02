@@ -8,11 +8,11 @@
                     <li class="breadcrumb-item active">Отделение #{{ $item->id }}</li>
                 </ol>
             </div>
-            <h4 class="page-title">Отделение # {{ $item->id }}</h4>
+            <h4 class="page-title">Отделение # {{ $item->id }} - {{ $item->name }}</h4>
         </div>
     </x-slot>
     <x-slot name="slot">
-        <branch-show :branch-id="{{ $item->id }}"></branch-show>
+        <branch-show :branch="{{ $item }}"></branch-show>
     </x-slot>
 
 </x-minton-layout>

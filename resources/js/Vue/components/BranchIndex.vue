@@ -3,7 +3,7 @@
 <!--        <simple-table :inventories="items" :fields="fields"></simple-table>-->
             <b-row>
                 <b-col cols="2">
-                    <b-button variant="success" v-b-modal.modal-branch>Add new branch</b-button>
+                    <b-button variant="success" @click="createBranch">Add new branch</b-button>
                 </b-col>
                 <b-col cols="10">
                     <b-pagination
@@ -43,29 +43,7 @@
                 </template>
             </b-table>
         </div>
-        <b-modal
-            id="modal-branch"
-            ref="modal"
-            :title="modal.title"
-            @hidden="resetModal"
-            @ok="handleOk"
-        >
-            <form ref="form" @submit.stop.prevent="handleSubmit">
-                <b-form-group
-                    label="Name"
-                    label-for="name-input"
-                    invalid-feedback="Name is required"
-                    :state="nameState"
-                >
-                    <b-form-input
-                        id="name-input"
-                        v-model="form.name"
-                        :state="nameState"
-                        required
-                    ></b-form-input>
-                </b-form-group>
-            </form>
-        </b-modal>
+        <create-update-branch-modal :action="actionModal" :branch="branch" @updateBranch="getItems"></create-update-branch-modal>
     </div>
 </template>
 
@@ -74,12 +52,12 @@ export default {
     name: "BranchIndex",
     data() {
         return {
+            actionModal: 'CREATE',
             CREATE: 'CREATE',
             UPDATE: 'UPDATE',
-            modal: {
-                action: null,
-                title: null,
-                editItemId: null
+            branch: {
+                name: null,
+                id: null
             },
             isBusy: false,
             currentPage: 1,
@@ -98,45 +76,25 @@ export default {
         }
     },
     methods: {
-        onEdit(item) {
-            this.form.name = item.name;
-            this.modal.action = this.UPDATE;
-            this.modal.editItemId = item.id;
-            this.modal.title = 'Update branch #'+item.id;
+        createBranch() {
+            this.actionModal = this.CREATE;
+            this.branch = {
+                name: null,
+                id: null
+            };
             this.$bvModal.show('modal-branch');
-
+        },
+        onEdit(item) {
+            this.actionModal = this.UPDATE;
+            this.branch.name = item.name;
+            this.branch.id = item.id;
+            this.$bvModal.show('modal-branch');
         },
         onDelete(item) {
             axios.delete('branch/'+item.id)
                 .then((response)=>{
                     this.getItems();
                 })
-        },
-        resetModal(){
-            this.form = {
-                name: null
-            }
-            this.modal = {
-                action: this.CREATE,
-                title: 'Create new branch',
-                editItemId: null
-            }
-        },
-        handleOk() {
-            if(!this.validate()) {
-                return false;
-            }
-            if(this.modal.action === this.CREATE) {
-                axios.post(window.routes.branch_store, this.form)
-                    .then((response)=>{
-                        this.getItems();
-                    });
-            } else if(this.modal.action === this.UPDATE) {
-                axios.patch('branch/'+this.modal.editItemId, this.form)
-                    .then((response)=>{
-                        this.getItems();
-                    })
-            }
         },
         getItems() {
             this.isBusy = true;
@@ -148,15 +106,10 @@ export default {
                     });
                     this.isBusy = false;
                 })
-        },
-        validate() {
-            let result = true;
-            return result
         }
     },
     created() {
         this.getItems();
-        this.resetModal();
     }
 }
 </script>

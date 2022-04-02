@@ -1,20 +1,20 @@
 <template>
     <div>
-<!--        <simple-table :inventories="inventories" :fields="fields"></simple-table>-->
-            <b-row>
-                <b-col cols="2">
-                    <b-button variant="success" v-b-modal.modal-item>Add new inventory</b-button>
-                </b-col>
-                <b-col cols="10">
-                    <b-pagination
-                        align="right"
-                        v-model="currentPage"
-                        :total-rows="items.length"
-                        :per-page="perPage"
-                        aria-controls="my-table"
-                    ></b-pagination>
-                </b-col>
-            </b-row>
+        <b-row>
+            <b-col cols="2">
+                <b-button variant="warning" @click="editBranch">Edit branch</b-button>
+                <b-button variant="success" v-b-modal.modal-item>Add new inventory</b-button>
+            </b-col>
+            <b-col cols="10">
+                <b-pagination
+                    align="right"
+                    v-model="currentPage"
+                    :total-rows="items.length"
+                    :per-page="perPage"
+                    aria-controls="my-table"
+                ></b-pagination>
+            </b-col>
+        </b-row>
         <div class="overflow-auto">
             <b-table striped hover
                      :busy="isBusy"
@@ -43,6 +43,8 @@
                 </template>
             </b-table>
         </div>
+        <create-update-branch-modal :action="actionModal" :branch="branch" @updateBranch="updatedBranch"></create-update-branch-modal>
+
         <b-modal
             id="modal-item"
             ref="modal"
@@ -82,9 +84,10 @@
 <script>
 export default {
     name: "BranchShow",
-    props: ['branchId'],
+    props: ['branch'],
     data() {
         return {
+            actionModal: 'UPDATE',
             conditionOptions: [],
             categoryOptions: [],
             branchOptions: [],
@@ -115,9 +118,12 @@ export default {
         }
     },
     methods: {
-        // onShow(item){
-        //     axios.get('item/'+item.id);
-        // },
+        updatedBranch() {
+            window.location.reload()
+        },
+        editBranch() {
+            this.$bvModal.show('modal-branch');
+        },
         onEdit(item) {
             this.form.name = item.name;
             this.form.description = item.description;
@@ -126,7 +132,6 @@ export default {
             this.modal.editItemId = item.id;
             this.modal.title = 'Update inventory #'+item.id;
             this.$bvModal.show('modal-item');
-
         },
         onDelete(item) {
             axios.delete('inventory/'+item.id)
@@ -149,7 +154,7 @@ export default {
             if(!this.validate()) {
                 return false;
             }
-            this.form.branch = this.branchId;
+            this.form.branch = this.branch.id;
             this.form.inventoryId = this.inventoryId;
             if(this.modal.action === this.CREATE) {
                 axios.post(window.routes.inventory_store, this.form)
@@ -165,7 +170,7 @@ export default {
         },
         getItems() {
             this.isBusy = true;
-            axios.get('/branch/'+ this.branchId + '/inventories')
+            axios.get('/branch/'+ this.branch.id + '/inventories')
                 .then(({data:response})=>{
                     this.items = response.map(item => {
                         item.inventory.totalItems = item.totalItems

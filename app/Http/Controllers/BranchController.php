@@ -100,7 +100,7 @@ class BranchController extends Controller
 
     public function getInventories(int $id)
     {
-        $inventories = Inventory::where(['user_id' => Auth::id()])->with(['user','branch',])->get();
+        $inventories = Inventory::where(['user_id' => Auth::id(), 'branch_id' => $id])->with(['user','branch',])->get();
 
         $data = [];
         if(!empty($inventories)) {
