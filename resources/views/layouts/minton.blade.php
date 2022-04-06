@@ -245,12 +245,12 @@
         'dashboard' : '{{ route('dashboard') }}',
         'inventory_index' : '{{ route('inventory.index') }}',
         'inventory_store' : '{{ route('inventory.store') }}',
-        'inventory_get_items' : '{{ route('inventory.get-items') }}',
+        'inventory_get_items' : '{{ route('inventory.getItems') }}',
         'category_items' : '{{ route('category.index') }}',
         'category_store' : '{{ route('category.store') }}',
         'category_get_items' : '{{ route('category.get-items') }}',
         'branch_store' : '{{ route('branch.store') }}',
-        'branch_get_items' : '{{ route('branch.get-items') }}',
+        'branch_get_items' : '{{ route('branch.getItems') }}',
         'item_store' : '{{ route('item.store') }}',
     }
 </script>

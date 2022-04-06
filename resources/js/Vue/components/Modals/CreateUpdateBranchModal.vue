@@ -59,14 +59,7 @@ export default {
             }
         },
         resetModal(){
-            this.form = {
-                name: null
-            }
-            this.modal = {
-                action: this.CREATE,
-                title: 'Create new branch',
-                editItemId: null
-            }
+            this.$emit('resetBranchModal')
         },
         validate() {
             let result = true;

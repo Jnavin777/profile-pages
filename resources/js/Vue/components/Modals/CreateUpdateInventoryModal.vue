@@ -36,7 +36,7 @@
             <b-form-group
                 label="Branch"
                 label-for="branch-input">
-                <b-form-select v-model="inventory.branch" :options="branchOptions">
+                <b-form-select v-model="inventory.branch_id" :options="branchOptions">
                     <template #first>
                         <b-form-select-option :value="null" disabled>-- Please select an option --</b-form-select-option>
                     </template>
@@ -80,23 +80,14 @@ export default {
                         self.$emit('updateInventory')
                     });
             } else if(this.action === this.UPDATE) {
-                axios.patch('inventory/'+this.inventory.id, this.inventory)
+                axios.patch('/inventory/'+this.inventory.id, this.inventory)
                     .then((response)=>{
                         self.$emit('updateInventory')
                     })
             }
         },
         resetModal(){
-            this.form = {
-                name: null,
-                description: null,
-                branch: null
-            }
-            this.modal = {
-                action: this.CREATE,
-                title: 'Create new inventory',
-                editItemId: null
-            }
+            this.$emit('resetInventoryModal')
         },
         validate() {
             let result = true;

@@ -73,7 +73,7 @@ class InventoryController extends Controller
     {
         $inventory->name = $request->get('name');
         $inventory->description = $request->get('description');
-        $inventory->branch_id = $request->get('branch');
+        $inventory->branch_id = $request->get('branch_id');
         $inventory->user_id = Auth::id();
         $inventory->save();
         return new JsonResponse($inventory, Response::HTTP_OK);

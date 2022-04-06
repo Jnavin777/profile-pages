@@ -13,7 +13,7 @@
     </x-slot>
     <x-slot name="slot">
         <inventory-show
-            :inventory-id="{{ $item->id }}"
+            :inventory="{{ $item }}"
             :conditions="{{ json_encode($conditions) }}"
             :categories="{{ json_encode($categories) }}"
         ></inventory-show>

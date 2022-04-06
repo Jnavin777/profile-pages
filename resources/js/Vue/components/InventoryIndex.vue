@@ -95,7 +95,7 @@ export default {
             this.inventory.id = item.id;
             this.inventory.name = item.name;
             this.inventory.description = item.description;
-            this.inventory.branch = item.branch ? item.branch.id : null;
+            this.inventory.branch_id = item.branch_id;
             this.$bvModal.show('modal-inventory');
         },
         onDelete(item) {

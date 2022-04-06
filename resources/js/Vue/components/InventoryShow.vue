@@ -47,7 +47,8 @@
         <create-update-inventory-modal
             :action="actionModal"
             :inventory="inventory"
-            @updateInventory="getItems"></create-update-inventory-modal>
+            @updateInventory="getItems">
+        </create-update-inventory-modal>
         <b-modal
             id="modal-item"
             ref="modal"
@@ -198,11 +199,6 @@ export default {
                 categoryId: null,
                 dateOfReceiving: null,
             }
-            this.modal = {
-                action: this.CREATE,
-                title: 'Add new item',
-                editItemId: null
-            }
         },
         handleOk() {
             if(!this.validate()) {
@@ -223,7 +219,7 @@ export default {
         },
         getItems() {
             this.isBusy = true;
-            axios.get('/inventory/'+ this.inventoryId +'/get_item')
+            axios.get('/inventory/'+ this.inventory.id +'/items')
                 .then((response)=>{
                     this.items = response.data.items;
                     this.isBusy = false;

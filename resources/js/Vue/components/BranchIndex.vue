@@ -15,7 +15,7 @@
             </b-col>
         </b-row>
         <div class="overflow-auto">
-            <b-table striped hover
+            <b-table hover
                      :busy="isBusy"
                      id="my-table"
                      :items="items"
@@ -45,7 +45,8 @@
         <create-update-branch-modal
             :action="actionModal"
             :branch="branch"
-            @updateBranch="getItems">
+            @updateBranch="getItems"
+            @resetBranchModal="resetBranchModal">
         </create-update-branch-modal>
     </div>
 </template>
@@ -79,6 +80,12 @@ export default {
         }
     },
     methods: {
+        resetBranchModal() {
+            this.branch = {
+                name: null,
+                id: null
+            }
+        },
         createBranch() {
             this.actionModal = this.CREATE;
             this.branch = {
