@@ -37,7 +37,7 @@
                     <b-button variant="warning" size="sm" @click="onEditInventory(row.item)" class="mr-1">
                         Edit
                     </b-button>
-                    <b-button variant="danger" size="sm" @click="onDeleteInventory(row.item)">
+                    <b-button variant="danger" size="sm" @click="confirmDeleteInventory(row.item)">
                         Delete
                     </b-button>
                 </template>
@@ -73,7 +73,7 @@ export default {
             inventory: {
                 name: null,
                 description: null,
-                branch: null,
+                branch_id: null,
             },
             CREATE: 'CREATE',
             UPDATE: 'UPDATE',
@@ -92,13 +92,14 @@ export default {
             this.inventory = {
                 name: null,
                 description: null,
-                branch: null,
+                branch_id: null,
             }
         },
         updatedInventory() {
             window.location.reload()
         },
         editInventory() {
+            this.inventory.branch_id = this.branch.id
             this.$bvModal.show('modal-inventory');
         },
         updatedBranch() {
@@ -115,8 +116,19 @@ export default {
             this.actionInventoryModal = this.UPDATE;
             this.$bvModal.show('modal-inventory');
         },
+        confirmDeleteInventory(item) {
+            let confirmMessage = item.totalItems
+                ? 'Are you sure? This Inventory has '+item.totalItems+' items'
+                : 'Are you sure?'
+            this.$bvModal.msgBoxConfirm(confirmMessage)
+                .then(value => {
+                    if(value) {
+                        this.onDeleteInventory(item)
+                    }
+                });
+        },
         onDeleteInventory(item) {
-            axios.delete('inventory/'+item.id)
+            axios.delete('/inventory/'+item.id)
                 .then((response)=>{
                     this.getItems();
                 })

@@ -2,18 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="706fd39b-0dfe-4f58-9608-5522654a7305" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/Vue/components/Modals/CreateUpdateItemModal.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Enum/ConditionEnum.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enum/ConditionEnum.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FilterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FilterController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/InventoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/InventoryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Vue/components/BranchIndex.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Vue/components/BranchIndex.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Vue/components/BranchShow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Vue/components/BranchShow.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Vue/components/InventoryIndex.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Vue/components/InventoryIndex.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Vue/components/InventoryShow.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Vue/components/InventoryShow.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Vue/components/Modals/CreateUpdateBranchModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Vue/components/Modals/CreateUpdateBranchModal.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Vue/components/Modals/CreateUpdateInventoryModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Vue/components/Modals/CreateUpdateInventoryModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/inventories/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/inventories/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/minton.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/minton.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,15 +163,15 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\xampp\htdocs\items.loc\app\Http\Middleware" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\xampp\htdocs\items.loc\resources\js\Vue\components\Modals" />
       <recent name="E:\xampp\htdocs\items.loc\app\Models" />
       <recent name="E:\xampp\htdocs\items.loc\public\assets\images" />
       <recent name="E:\xampp\htdocs\items.loc\resources\js\Vue\components" />
       <recent name="E:\xampp\htdocs\items.loc\resources\views" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\xampp\htdocs\items.loc\app\Http\Middleware" />
     </key>
   </component>
   <component name="RunManager">
@@ -200,6 +198,8 @@
       <workItem from="1648586799744" duration="9233000" />
       <workItem from="1648669979571" duration="10791000" />
       <workItem from="1648921622307" duration="15688000" />
+      <workItem from="1649280628682" duration="2327000" />
+      <workItem from="1649538540493" duration="2216000" />
     </task>
     <servers />
   </component>
@@ -215,10 +215,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1648929598484" />
-    <state x="667" y="253" width="868" height="564" key="find.popup" timestamp="1649018564677">
+    <state x="667" y="253" width="868" height="564" key="find.popup" timestamp="1649539121203">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="667" y="253" width="868" height="564" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1649018564677" />
+    <state x="667" y="253" width="868" height="564" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1649539121203" />
     <state x="616" y="235" key="run.anything.popup" timestamp="1646950059321">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

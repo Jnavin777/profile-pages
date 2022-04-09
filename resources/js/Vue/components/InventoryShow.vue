@@ -32,13 +32,10 @@
                     </div>
                 </template>
                 <template #cell(actions)="row">
-<!--                    <b-button variant="info" size="sm" :href="'inventory/'+row.item.id" class="mr-1">-->
-<!--                        <b-icon icon="eye"></b-icon>-->
-<!--                    </b-button>-->
-                    <b-button variant="warning" size="sm" @click="onEdit(row.item)" class="mr-1">
+                    <b-button variant="warning" size="sm" @click="onEditItem(row.item)" class="mr-1">
                         Edit
                     </b-button>
-                    <b-button variant="danger" size="sm" @click="onDelete(row.item)">
+                    <b-button variant="danger" size="sm" @click="onDeleteItem(row.item)">
                         Delete
                     </b-button>
                 </template>
@@ -49,77 +46,11 @@
             :inventory="inventory"
             @updateInventory="getItems">
         </create-update-inventory-modal>
-        <b-modal
-            id="modal-item"
-            ref="modal"
-            :title="modal.title"
-            @hidden="resetModal"
-            @ok="handleOk"
-        >
-            <form ref="form" @submit.stop.prevent="handleSubmit">
-                <b-form-group
-                    label="Name"
-                    label-for="name-input"
-                    invalid-feedback="Name is required"
-                    :state="nameState">
-                    <b-form-input
-                        id="name-input"
-                        v-model="form.name"
-                        :state="nameState"
-                        required
-                    ></b-form-input>
-                </b-form-group>
-                <b-form-group
-                    label="Condition"
-                    label-for="condition-input">
-                    <b-form-select v-model="form.condition" :options="conditionOptions">
-                        <template #first>
-                            <b-form-select-option :value="null" disabled>-- Please select an option --</b-form-select-option>
-                        </template>
-                    </b-form-select>
-                </b-form-group>
-                <b-form-group
-                    label="Article"
-                    label-for="article-input"
-                    invalid-feedback="Article is required"
-                    :state="articleState">
-                    <b-form-input
-                        id="name-input"
-                        v-model="form.article"
-                        :state="articleState"
-                        required
-                    ></b-form-input>
-                </b-form-group>
-                <b-form-group
-                    label="Category"
-                    label-for="category-input">
-                    <b-form-select v-model="form.categoryId" :options="categoryOptions">
-                        <template #first>
-                            <b-form-select-option :value="null" disabled>-- Please select an option --</b-form-select-option>
-                        </template>
-                    </b-form-select>
-                </b-form-group>
-<!--                <b-form-group-->
-<!--                    label="Branch"-->
-<!--                    label-for="branch-input">-->
-<!--                    <b-form-select v-model="form.branchId" :options="branchOptions">-->
-<!--                        <template #first>-->
-<!--                            <b-form-select-option :value="null" disabled>&#45;&#45; Please select an option &#45;&#45;</b-form-select-option>-->
-<!--                        </template>-->
-<!--                    </b-form-select>-->
-<!--                </b-form-group>-->
-                <b-form-group
-                    label="Date of receiving"
-                    label-for="date-of-receiving-input">
-                    <b-form-input
-                        id="date-of-receiving-input"
-                        type="date"
-                        v-model="form.dateOfReceiving"
-                        required
-                    ></b-form-input>
-                </b-form-group>
-            </form>
-        </b-modal>
+        <create-update-item-modal
+            :action="actionItemModal"
+            :item="item"
+            @updateItem="getItems">
+        </create-update-item-modal>
     </div>
 </template>
 
@@ -130,25 +61,17 @@ export default {
     data() {
         return {
             actionModal: 'UPDATE',
-            conditionOptions: [],
-            categoryOptions: [],
-            modal: {
-                action: this.CREATE,
-                title: 'Add new item',
-                editItemId: null
-            },
+            actionItemModal: 'CREATE',
             isBusy: false,
             currentPage: 1,
-            nameState: null,
-            articleState: null,
             perPage: 25,
-            form: {
+            item: {
                 name: null,
                 condition: null,
                 article: null,
                 categoryId: null,
-                // branchId: null,
                 dateOfReceiving: null,
+                inventoryId: this.inventory.id
             },
             CREATE: 'CREATE',
             UPDATE: 'UPDATE',
@@ -171,24 +94,30 @@ export default {
         editInventory() {
             this.$bvModal.show('modal-inventory');
         },
-        onEdit(item) {
-            this.form.name = item.name;
-            this.form.condition = item.condition;
-            this.form.article = item.article;
-            this.form.categoryId = item.category_id;
-            // this.form.branchId = item.branch_id;
-            this.form.dateOfReceiving = item.dateOfReceiving;
+        onEditItem(item) {
+            this.item.id = item.id;
+            this.item.name = item.name;
+            this.item.condition = item.condition;
+            this.item.article = item.article;
+            this.item.categoryId = item.category_id;
+            this.item.dateOfReceiving = item.date_of_receiving;
 
-            this.modal.action = this.UPDATE;
-            this.modal.editItemId = item.id;
-            this.modal.title = 'Update item #'+item.id;
+            this.actionItemModal = this.UPDATE;
             this.$bvModal.show('modal-item');
 
         },
-        onDelete(item) {
+        onDeleteItem(item) {
             axios.delete('item/'+item.id)
                 .then((response)=>{
                     this.getItems();
+                })
+        },
+        getItems() {
+            this.isBusy = true;
+            axios.get('/inventory/'+ this.inventory.id +'/items')
+                .then((response)=>{
+                    this.items = response.data.items;
+                    this.isBusy = false;
                 })
         },
         resetModal(){
@@ -200,51 +129,10 @@ export default {
                 dateOfReceiving: null,
             }
         },
-        handleOk() {
-            if(!this.validate()) {
-                return false;
-            }
-            this.form.inventoryId = this.inventoryId;
-            if(this.modal.action === this.CREATE) {
-                axios.post(window.routes.item_store, this.form)
-                    .then((response)=>{
-                        this.getItems();
-                    });
-            } else if(this.modal.action === this.UPDATE) {
-                axios.patch('/item/'+this.modal.editItemId, this.form)
-                    .then((response)=>{
-                        this.getItems();
-                    })
-            }
-        },
-        getItems() {
-            this.isBusy = true;
-            axios.get('/inventory/'+ this.inventory.id +'/items')
-                .then((response)=>{
-                    this.items = response.data.items;
-                    this.isBusy = false;
-                })
-        },
-        validate() {
-            let result = true;
-            return result
-        }
     },
     created() {
         this.getItems();
         this.resetModal();
-        this.conditionOptions = Object.values(this.conditions).map( item => {
-            return {
-                value: item,
-                text: item
-            }
-        })
-        this.categoryOptions = this.categories.map( item => {
-            return {
-                value: item.id,
-                text: item.name
-            }
-        })
     }
 }
 </script>

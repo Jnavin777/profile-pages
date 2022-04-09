@@ -21,6 +21,7 @@ import BranchIndex from "./Vue/components/BranchIndex";
 import BranchShow from "./Vue/components/BranchShow";
 import CreateUpdateBranchModal from "./Vue/components/Modals/CreateUpdateBranchModal";
 import CreateUpdateInventoryModal from "./Vue/components/Modals/CreateUpdateInventoryModal";
+import CreateUpdateItemModal from "./Vue/components/Modals/CreateUpdateItemModal";
 
 Vue.prototype.console = console;
 Vue.use(BootstrapVue);
@@ -36,5 +37,6 @@ Vue.component(BranchIndex.name, BranchIndex);
 Vue.component(BranchShow.name, BranchShow);
 Vue.component(CreateUpdateBranchModal.name, CreateUpdateBranchModal);
 Vue.component(CreateUpdateInventoryModal.name, CreateUpdateInventoryModal);
+Vue.component(CreateUpdateItemModal.name, CreateUpdateItemModal);
 
 new Vue().$mount('#wrapper')

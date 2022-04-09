@@ -14,8 +14,6 @@
     <x-slot name="slot">
         <inventory-show
             :inventory="{{ $item }}"
-            :conditions="{{ json_encode($conditions) }}"
-            :categories="{{ json_encode($categories) }}"
         ></inventory-show>
     </x-slot>
 

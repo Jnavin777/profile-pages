@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Enum\ConditionEnum;
 use App\Models\Branch;
+use App\Models\Category;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,5 +23,15 @@ class FilterController extends Controller
     private function filterBranch()
     {
         return Branch::select(['id as value', 'name as text'])->where(['user_id' => Auth::id()])->get()->toArray();
+    }
+
+    private function filterCondition()
+    {
+        return ConditionEnum::$filterArray;
+    }
+
+    private function filterCategory()
+    {
+        return Category::select(['id as value', 'name as text'])->where(['user_id' => Auth::id()])->get()->toArray();
     }
 }

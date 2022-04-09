@@ -34,7 +34,7 @@ class InventoryController extends Controller
         $newInventory = new Inventory();
         $newInventory->name = $request->get('name');
         $newInventory->description = $request->get('description');
-        $newInventory->branch_id = $request->get('branch');
+        $newInventory->branch_id = $request->get('branch_id');
         $newInventory->user_id = Auth::id();
         $newInventory->save();
         return new JsonResponse($newInventory, Response::HTTP_OK);
@@ -47,9 +47,7 @@ class InventoryController extends Controller
     public function show($id)
     {
         return view('inventories.show', [
-            'item' => Inventory::where(['id' => $id])->with(['branch'])->first(),
-            'conditions' => ConditionEnum::getConstants(),
-            'categories' => Category::where(['user_id' => Auth::id()])->get(),
+            'item' => Inventory::where(['id' => $id])->with(['branch'])->first()
         ]);
     }
 
@@ -82,15 +80,14 @@ class InventoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param Inventory $inventory
      * @return JsonResponse
      */
-    public function destroy(int $id)
+    public function destroy(Inventory $inventory)
     {
-        $inventory = Inventory::find($id);
         $inventory->items()->delete();
         $inventory->delete();
-        return new JsonResponse([], Response::HTTP_OK);
+        return new JsonResponse([], Response::HTTP_NO_CONTENT);
     }
 
 
