@@ -1,0 +1,7 @@
+{
+    "name": "kramer/profiles",
+    "description": "Profiles pages",
+    "minimum-stability": "dev",
+    "require": {},
+    "license": "MIT"
+}
