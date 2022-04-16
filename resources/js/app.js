@@ -22,6 +22,10 @@ import BranchShow from "./Vue/components/BranchShow";
 import CreateUpdateBranchModal from "./Vue/components/Modals/CreateUpdateBranchModal";
 import CreateUpdateInventoryModal from "./Vue/components/Modals/CreateUpdateInventoryModal";
 import CreateUpdateItemModal from "./Vue/components/Modals/CreateUpdateItemModal";
+import AdminUserIndex from "./Vue/components/Admin/AdminUserIndex";
+import CreateUpdateUserModal from "./Vue/components/Admin/CreateUpdateUserModal";
+import AdminRoleIndex from "./Vue/components/Admin/AdminRoleIndex";
+import CreateUpdateRoleModal from "./Vue/components/Admin/CreateUpdateRoleModal";
 
 Vue.prototype.console = console;
 Vue.use(BootstrapVue);
@@ -38,5 +42,11 @@ Vue.component(BranchShow.name, BranchShow);
 Vue.component(CreateUpdateBranchModal.name, CreateUpdateBranchModal);
 Vue.component(CreateUpdateInventoryModal.name, CreateUpdateInventoryModal);
 Vue.component(CreateUpdateItemModal.name, CreateUpdateItemModal);
+
+// Admin components
+Vue.component(AdminUserIndex.name, AdminUserIndex);
+Vue.component(CreateUpdateUserModal.name, CreateUpdateUserModal);
+Vue.component(AdminRoleIndex.name, AdminRoleIndex);
+Vue.component(CreateUpdateRoleModal.name, CreateUpdateRoleModal);
 
 new Vue().$mount('#wrapper')

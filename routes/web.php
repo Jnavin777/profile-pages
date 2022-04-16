@@ -8,6 +8,9 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminRoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +29,7 @@ Route::middleware(['auth', 'auth.lock'])->group(function () {
 
     Route::get('/inventory/get-items', [InventoryController::class,'getItems'])->name('inventory.getItems');
     Route::get('/inventory/{inventory}/items', [ItemController::class,'getItemsByInventory'])->name('category.getItemsByInventory');
-    Route::resource('/inventory', InventoryController::class);
+    Route::resource('/inventory', InventoryController::class)->middleware(['role_or_permission:super-admin|edit inventories']);
 
     Route::get('/branch/get_item', [BranchController::class,'getItems'])->name('branch.getItems');
     Route::get('/branch/{id}/inventories', [BranchController::class,'getInventories'])->name('branch.getInventories');
@@ -35,7 +38,7 @@ Route::middleware(['auth', 'auth.lock'])->group(function () {
     Route::get('/category/get_item', [CategoryController::class,'getItems'])->name('category.get-items');
     Route::resource('/category', CategoryController::class);
     Route::resource('/item', ItemController::class);
-    Route::post('/item', [ItemController::class, 'store'])->name('item.store');;
+    Route::post('/item', [ItemController::class, 'store'])->name('item.store');
     Route::patch('/item/{id}', [ItemController::class,'update'])->name('item.update');
     Route::post('/item', [ItemController::class,'store'])->name('item.store');
 
@@ -48,6 +51,17 @@ Route::get('/to-locked', [LoginController::class, 'toLocked'])->name('login.toLo
 
 require __DIR__.'/auth.php';
 
+Route::prefix('admin')->middleware(['auth', 'auth.lock', 'role:Super Admin'])->group(function () {
+    Route::get('/dashboard', [AdminDashboardController::class,'dashboard'])->name('admin.dashboard');
+    Route::get('/', [AdminDashboardController::class,'dashboard'])->name('admin.index');
+
+    Route::get('/user/get-items', [AdminUserController::class,'getItems'])->name('user.getItems');
+    Route::resource('/user', AdminUserController::class);
+
+    Route::get('/role/get-items', [AdminRoleController::class,'getItems'])->name('role.getItems');
+    Route::resource('/role', AdminRoleController::class);
+
+});
 
 /**
  * Teamwork routes
@@ -69,3 +83,5 @@ Route::group(['prefix' => 'teams', 'namespace' => 'Teamwork'], function()
 
     Route::get('accept/{token}', [App\Http\Controllers\Teamwork\AuthController::class, 'acceptInvite'])->name('teams.accept_invite');
 });
+
+

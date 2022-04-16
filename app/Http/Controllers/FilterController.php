@@ -8,6 +8,7 @@ use App\Models\Category;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 use Symfony\Component\HttpFoundation\Response;
 
 class FilterController extends Controller
@@ -33,5 +34,10 @@ class FilterController extends Controller
     private function filterCategory()
     {
         return Category::select(['id as value', 'name as text'])->where(['user_id' => Auth::id()])->get()->toArray();
+    }
+
+    private function filterRole()
+    {
+        return Role::select(['id as value', 'name as text'])->get()->toArray();
     }
 }

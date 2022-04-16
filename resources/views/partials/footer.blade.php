@@ -10,6 +10,9 @@
                     <a href="javascript:void(0);">Техподдержка</a>
                     <a href="javascript:void(0);">Связаться с нами!</a>
                     <a href="javascript:void(0);">Другие проекты</a>
+                    @role('Super Admin')
+                    <a href="{{ route('admin.dashboard') }}">Админ Панель</a>
+                    @endrole
                 </div>
             </div>
         </div>
