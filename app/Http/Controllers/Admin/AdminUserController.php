@@ -111,7 +111,12 @@ class AdminUserController extends Controller
             $roles = $user['roles'];
             $users[$key]['roles'] = [];
             foreach ($roles as $role) {
-                array_push($users[$key]['roles'], $role['id']);
+                $users[$key]['roles'][] = [
+                    'id' => $role['id'],
+                    'name' => $role['name']
+                ];
+//                    array_push($users[$key]['roles'], $role['id']);
+//                array_push($users[$key]['roles'], $role['name']);
             }
         }
 

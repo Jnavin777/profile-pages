@@ -20,12 +20,6 @@
                 </a>
 
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <i class="remixicon-settings-3-line"></i>
-                    <span>Настройки</span>
-                </a>
-
-                <!-- item-->
                 <a href="{{ url('/to-locked') }}" class="dropdown-item notify-item">
                     <i class="remixicon-lock-line"></i>
                     <span>Заблокировать</span>

@@ -49,4 +49,5 @@ Vue.component(CreateUpdateUserModal.name, CreateUpdateUserModal);
 Vue.component(AdminRoleIndex.name, AdminRoleIndex);
 Vue.component(CreateUpdateRoleModal.name, CreateUpdateRoleModal);
 
+require('../../packages/profiles/src/views/Vue/app.js')
 new Vue().$mount('#wrapper')

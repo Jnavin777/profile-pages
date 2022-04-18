@@ -14,15 +14,9 @@
                 </div>
 
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <a href="{{ route('profile.my-show') }}" class="dropdown-item notify-item">
                     <i class="remixicon-account-circle-line"></i>
                     <span>Мой профиль</span>
-                </a>
-
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <i class="remixicon-settings-3-line"></i>
-                    <span>Настройки</span>
                 </a>
 
                 <!-- item-->

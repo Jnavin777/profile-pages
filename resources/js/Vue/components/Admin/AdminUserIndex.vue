@@ -29,6 +29,11 @@
                         <strong>Loading...</strong>
                     </div>
                 </template>
+                <template #cell(roles)="row">
+                    <span v-for="role in row.item.roles" :key="role.id">
+                        <b-badge variant="info">{{ role.name}}</b-badge>
+                    </span>
+                </template>
                 <template #cell(actions)="row">
                     <b-button variant="info" size="sm" :href="'admin/user/'+row.item.id" class="mr-1">
                         <b-icon icon="eye"></b-icon>
@@ -74,6 +79,7 @@ export default {
                 {key:'id'},
                 {key:'name'},
                 {key:'email'},
+                {key:'roles'},
                 {key:'actions'},
             ]
         }
@@ -104,7 +110,7 @@ export default {
             this.user.name = item.name;
             this.user.email = item.email;
             this.user.password = null;
-            this.user.roles = item.roles;
+            this.user.roles = item.roles.map(item => item.id);
             this.user.id = item.id;
             this.$bvModal.show('modal-user');
         },
