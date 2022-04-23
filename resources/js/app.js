@@ -26,6 +26,10 @@ import AdminUserIndex from "./Vue/components/Admin/AdminUserIndex";
 import CreateUpdateUserModal from "./Vue/components/Admin/CreateUpdateUserModal";
 import AdminRoleIndex from "./Vue/components/Admin/AdminRoleIndex";
 import CreateUpdateRoleModal from "./Vue/components/Admin/CreateUpdateRoleModal";
+import AdminPermissionIndex from "./Vue/components/Admin/AdminPermissionIndex";
+import CreateUpdatePermissionModal from "./Vue/components/Admin/CreateUpdatePermissionModal";
+import CreateUpdateProductModal from "./Vue/components/Admin/CreateUpdateProductModal";
+import AdminProductIndex from "./Vue/components/Admin/AdminProductIndex";
 
 Vue.prototype.console = console;
 Vue.use(BootstrapVue);
@@ -48,6 +52,10 @@ Vue.component(AdminUserIndex.name, AdminUserIndex);
 Vue.component(CreateUpdateUserModal.name, CreateUpdateUserModal);
 Vue.component(AdminRoleIndex.name, AdminRoleIndex);
 Vue.component(CreateUpdateRoleModal.name, CreateUpdateRoleModal);
+Vue.component(AdminPermissionIndex.name, AdminPermissionIndex);
+Vue.component(CreateUpdatePermissionModal.name, CreateUpdatePermissionModal);
+Vue.component(AdminProductIndex.name, AdminProductIndex);
+Vue.component(CreateUpdateProductModal.name, CreateUpdateProductModal);
 
 require('../../packages/profiles/src/views/Vue/app.js')
 new Vue().$mount('#wrapper')

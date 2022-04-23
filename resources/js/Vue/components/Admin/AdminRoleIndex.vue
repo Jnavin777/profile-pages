@@ -30,9 +30,9 @@
                     </div>
                 </template>
                 <template #cell(actions)="row">
-                    <b-button variant="info" size="sm" :href="'admin/role/'+row.item.id" class="mr-1">
-                        <b-icon icon="eye"></b-icon>
-                    </b-button>
+<!--                    <b-button variant="info" size="sm" :href="'admin/role/'+row.item.id" class="mr-1">-->
+<!--                        <b-icon icon="eye"></b-icon>-->
+<!--                    </b-button>-->
                     <b-button variant="warning" size="sm" @click="onEdit(row.item)" class="mr-1">
                         Edit
                     </b-button>

@@ -31,23 +31,19 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('branch.index') }}" class="waves-effect">
+                    <a href="{{ route('permission.index') }}" class="waves-effect">
                         <i class="remixicon-layout-line"></i>
-                        <span> Отделения </span>
+                        <span> Permissions </span>
                     </a>
                 </li>
+
                 <li>
-                    <a href="{{ route('inventory.index') }}" class="waves-effect">
+                    <a href="{{ route('product.index') }}" class="waves-effect">
                         <i class="remixicon-layout-line"></i>
-                        <span> Инвентаризации </span>
+                        <span> Products </span>
                     </a>
                 </li>
-                <li>
-                    <a href="{{ route('category.index') }}" class="waves-effect">
-                        <i class="remixicon-layout-line"></i>
-                        <span> Категории </span>
-                    </a>
-                </li>
+
                 <li>
                     <a href="{{ route('teams.index') }}" class="waves-effect">
                         <i class="remixicon-layout-line"></i>

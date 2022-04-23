@@ -246,6 +246,10 @@
         'user_store' : '{{ route('user.store') }}',
         'role_get_items' : '{{ route('role.getItems') }}',
         'role_store' : '{{ route('role.store') }}',
+        'permission_get_items' : '{{ route('permission.getItems') }}',
+        'permission_store' : '{{ route('permission.store') }}',
+        'product_get_items' : '{{ route('product.getItems') }}',
+        'product_store' : '{{ route('product.store') }}',
 
     }
 </script>

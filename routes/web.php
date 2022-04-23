@@ -11,6 +11,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminRoleController;
+use App\Http\Controllers\Admin\AdminPermissionController;
+use App\Http\Controllers\Admin\AdminProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +62,13 @@ Route::prefix('admin')->middleware(['auth', 'auth.lock', 'role:Super Admin'])->g
 
     Route::get('/role/get-items', [AdminRoleController::class,'getItems'])->name('role.getItems');
     Route::resource('/role', AdminRoleController::class);
+
+    Route::get('/permission/get-items', [AdminPermissionController::class,'getItems'])->name('permission.getItems');
+    Route::resource('/permission', AdminPermissionController::class);
+
+    Route::get('/product/get-items', [AdminProductController::class,'getItems'])->name('product.getItems');
+    Route::resource('/product', AdminProductController::class);
+
 
 });
 
